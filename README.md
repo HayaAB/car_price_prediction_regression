@@ -1,29 +1,55 @@
-# 🚗 Car Price Prediction Using Machine Learning
+# 🚗 Car Price Prediction using Machine Learning
 
 ## 📌 Project Overview
 
-This project focuses on building a machine learning model to predict used car prices based on various features such as year, fuel type, engine power, and kilometers driven.
+This project focuses on predicting used car prices using Machine Learning techniques.  
+The main goal is to build accurate regression models that estimate car prices based on various vehicle features such as year, engine size, mileage, fuel type, and transmission.
 
-The objective was to develop an accurate regression model that can estimate car prices using real-world data from Kaggle.
+The project demonstrates the **complete Machine Learning workflow**, including:
+
+- Data cleaning
+- Feature engineering
+- Model training
+- Model evaluation
+- Cross-validation
+- Hyperparameter tuning
 
 ---
 
-## 📊 Dataset
+## 🎯 Project Objectives
 
-- Source: Kaggle – Car Price Prediction Dataset
-- Total Records: 8,128 cars
-- Features included:
-  - Year
-  - Selling Price
-  - Kilometers Driven
-  - Fuel Type
-  - Seller Type
-  - Transmission
-  - Owner
-  - Mileage
-  - Engine
-  - Max Power
-  - Seats
+- Understand and explore real-world structured data
+- Handle missing values and inconsistent data
+- Convert categorical features into numerical format
+- Train regression models to predict car prices
+- Evaluate model performance using multiple metrics
+- Improve model accuracy using Cross-Validation and Hyperparameter Tuning
+- Identify the most important features affecting car prices
+
+---
+
+## 📂 Dataset Information
+
+Dataset: **Car Price Prediction Dataset**
+
+The dataset contains information about used cars, including:
+
+- `name`
+- `year`
+- `selling_price` (Target Variable)
+- `km_driven`
+- `fuel`
+- `seller_type`
+- `transmission`
+- `owner`
+- `mileage`
+- `engine`
+- `max_power`
+- `seats`
+
+Source: Kaggle – Car Price Prediction Dataset
+
+Total Records: **8,128 cars**
 
 ---
 
@@ -31,39 +57,106 @@ The objective was to develop an accurate regression model that can estimate car 
 
 The following preprocessing steps were performed:
 
-- Handling missing values
-- Cleaning text values (removing units such as 'bhp')
-- Converting string values to numeric format
-- Encoding categorical features using One-Hot Encoding
-- Feature scaling using StandardScaler
-- Splitting data into training and testing sets
+- Removed unnecessary columns (e.g., car name)
+- Cleaned numeric columns (removed units such as "bhp")
+- Handled missing values using median replacement
+- Converted categorical variables using **One-Hot Encoding**
+- Split dataset into:
+  - Training Set (80%)
+  - Testing Set (20%)
+- Applied **StandardScaler** for feature scaling (when required)
 
 ---
 
-## 🤖 Models Used
+## 📊 Exploratory Data Analysis (EDA)
 
-Two regression models were implemented:
+EDA was performed to:
 
-1. Linear Regression  
-2. Random Forest Regressor
+- Understand dataset structure
+- Identify missing values
+- Analyze feature distributions
+- Explore relationships between features
+- Prepare data for modeling
+
+Common EDA steps included:
+
+- `df.head()`
+- `df.info()`
+- `df.describe()`
+- Missing value analysis
+- Feature visualization
+
+---
+
+## 🤖 Models Implemented
+
+### 1️⃣ Linear Regression
+
+Used as a baseline regression model.
+
+Evaluation Metrics:
+
+- MAE (Mean Absolute Error)
+- MSE (Mean Squared Error)
+- R² Score
+
+This model provided an initial understanding of linear relationships between features and car prices.
 
 ---
 
-## 📈 Model Performance
+### 2️⃣ Random Forest Regressor
 
-### Linear Regression
+Used to improve prediction accuracy using ensemble learning.
 
-- MAE: 268,886
-- R² Score: 0.697
+Random Forest significantly improved performance compared to Linear Regression.
 
-### Random Forest (Final Model)
+Evaluation Metrics:
 
-- MAE: 70,122
-- R² Score: **0.968**
+- MAE
+- MSE
+- R² Score
 
-Random Forest significantly improved prediction accuracy and became the final selected model.
+Feature importance was extracted to identify key predictors.
 
 ---
+
+## 🔁 Cross-Validation
+
+To ensure model reliability, **5-Fold Cross Validation** was applied.
+
+Method used:
+
+- `cross_val_score()`
+- Metric: **R² Score**
+
+Result:
+
+The model showed consistent performance across folds, indicating stable learning and minimal overfitting.
+
+---
+
+## ⚙️ Hyperparameter Tuning
+
+Hyperparameter tuning was performed using:
+
+**GridSearchCV**
+
+Parameters tuned:
+
+- `n_estimators`
+- `max_depth`
+- `min_samples_split`
+
+Best Parameters Found:
+
+```python
+{
+ 'max_depth': 20,
+ 'min_samples_split': 2,
+ 'n_estimators': 100
+}
+
+----
 
 ## 📊 Feature Importance Analysis
 
